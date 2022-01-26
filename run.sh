@@ -6,7 +6,6 @@ echo "Unzipping Tiny ImageNet..."
 unzip -qq tiny-imagenet-200.zip
 echo "Divide Validation folder to Validation / test (50/50) ..."
 mv tiny-imagenet-200/test tiny-imagenet-200/test_save
-rm -r ./tiny-imagenet-200/test
 python3 prepare_data.py
 mkdir models
 echo "Copying all images to ./tiny-224..."
