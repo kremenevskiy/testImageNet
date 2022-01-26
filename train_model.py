@@ -52,7 +52,7 @@ def train_model(output_path, model, dataloaders, dataset_sizes, criterion, optim
                 running_corrects += torch.sum(preds == labels.data)
                 print("\rIteration: {}/{}, Loss: {}.".format(i+1, len(dataloaders[phase]), loss.item() * inputs.size(0)), end="")
 
-#                 print( (i+1)*100. / len(dataloaders[phase]), "% Complete" )
+                # print( (i+1)*100. / len(dataloaders[phase]), "% Complete" )
                 sys.stdout.flush()
                 
                 
@@ -65,8 +65,8 @@ def train_model(output_path, model, dataloaders, dataset_sizes, criterion, optim
                 val_loss = epoch_loss
                 val_acc = epoch_acc
             
-#             print('{} Loss: {:.4f} Acc: {:.4f}'.format(
-#                 phase, epoch_loss, epoch_acc))
+            print('{} Loss: {:.4f} Acc: {:.4f}'.format(
+                phase, epoch_loss, epoch_acc))
 
             # deep copy the model
             if phase == 'val' and epoch_acc > best_acc:
@@ -74,14 +74,14 @@ def train_model(output_path, model, dataloaders, dataset_sizes, criterion, optim
                 best = epoch + 1
                 best_model_wts = copy.deepcopy(model.state_dict())
                 
-        liveloss.update({
-            'log loss': avg_loss,
-            'val_log loss': val_loss,
-            'accuracy': t_acc,
-            'val_accuracy': val_acc
-        })
+        # liveloss.update({
+        #     'log loss': avg_loss,
+        #     'val_log loss': val_loss,
+        #     'accuracy': t_acc,
+        #     'val_accuracy': val_acc
+        # })
                 
-        liveloss.draw()
+        # liveloss.draw()
         print('Train Loss: {:.4f} Acc: {:.4f}'.format(avg_loss, t_acc))
         print(  'Val Loss: {:.4f} Acc: {:.4f}'.format(val_loss, val_acc))
         print()
